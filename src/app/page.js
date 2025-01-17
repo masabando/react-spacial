@@ -1,95 +1,161 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import * as RSP from "@dist/react-spacial";
+import { useEffect, useState } from "react";
+
+function BGBox({ style = {}, children }) {
+  return (
+    <RSP.SpacialImage
+      spacial={false}
+      src="./img/spacial/kutc.jpg"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        ...style,
+      }}
+      rounded={10}
+    >
+      {children}
+    </RSP.SpacialImage>
+  )
+}
 
 export default function Home() {
+  const [neko, setNeko] = useState([]);
+  useEffect(() => {
+    setNeko(Array(10).fill(0).map(() => ({
+      shift: Math.random()*30,
+      pos: {
+        top: `${~~(Math.random() * 60 + 20)}%`,
+        left: `${~~(Math.random() * 60 + 20)}%`,
+      }
+    })))
+  }, []);
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <RSP.SpacialBody
+      style={{
+        padding: "2rem 0 10rem 0",
+      }}
+    >
+      <h1>Home</h1>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+      <div style={{
+        textAlign: "center",
+        padding: "0 20%",
+      }}>
+        <h2>通常写真</h2>
+        <div>
+          <RSP.SpacialImage spacial={false} rounded={10} src="./img/spacial/kutc.jpg" />
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <h2>空間写真</h2>
+        <div>
+          <RSP.SpacialImage rounded={10} src="./img/spacial/kutc.jpg" />
+        </div>
+      </div>
+
+      <div style={{
+        textAlign: "center",
+        padding: "0 20%",
+      }}>
+        <h2>通常の重ね画像</h2>
+        <BGBox>
+          <RSP.SpacialContainer shift={0}>
+            <img
+              src="./img/neko512.png"
+              alt="spacial neko"
+              style={{
+                width: "10vw"
+              }}
+            />
+          </RSP.SpacialContainer>
+        </BGBox>
+
+        <h2>奥行き感のある重ね画像</h2>
+        <BGBox>
+          <RSP.SpacialContainer shift={1}>
+            <img
+              src="./img/neko512.png"
+              alt="spacial neko"
+              style={{
+                width: "10vw"
+              }}
+            />
+          </RSP.SpacialContainer>
+        </BGBox>
+      </div>
+
+      <div style={{
+        textAlign: "center",
+        padding: "0 20%",
+      }}>
+        <h2>通常の重ね文字</h2>
+        <BGBox style={{
+          fontSize: "3vw",
+          fontWeight: "bold",
+          color: "white",
+          textShadow: "0 0 10px black",
+        }}>
+          <RSP.SpacialContainer
+            shift={0}
+            rounded={10}
+            style={{
+              fontSize: "3vw",
+              fontWeight: "bold",
+              color: "white",
+              textShadow: "0 0 10px black",
+            }}
+          >
+            React Spacial
+          </RSP.SpacialContainer>
+        </BGBox>
+
+        <h2>奥行き感のある重ね文字</h2>
+        <BGBox style={{
+          fontSize: "3vw",
+          fontWeight: "bold",
+          color: "white",
+          textShadow: "0 0 10px black",
+        }}>
+          <RSP.SpacialContainer shift={1}>
+            React Spacial
+          </RSP.SpacialContainer>
+        </BGBox>
+      </div>
+
+      <div style={{
+        textAlign: "center",
+        padding: "0 20%",
+      }}>
+        <BGBox style={{
+          fontSize: "3vw",
+          fontWeight: "bold",
+          color: "white",
+          textShadow: "0 0 10px black",
+          position: "relative",
+        }}>
+          {neko.map((n, i) => {
+            return (
+              <RSP.SpacialContainer
+                key={i}
+                style={{
+                  position: "absolute",
+                  ...n.pos,
+                }}
+                shift={n.shift}
+              >
+                <img
+                  src="./img/neko512.png"
+                  alt="spacial neko"
+                  style={{ width: "3vw" }}
+                />
+              </RSP.SpacialContainer>
+            )
+          })}
+          {/* <RSP.SpacialContainer shift={1}>
+            Spacial
+          </RSP.SpacialContainer> */}
+        </BGBox>
+      </div>
+    </RSP.SpacialBody>
   );
 }

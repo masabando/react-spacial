@@ -1,20 +1,54 @@
 {
-  "name": "react-spacial",
+  "name": "@masabando/react-spacial",
+  "type": "module",
   "version": "0.1.0",
-  "private": true,
+  "author": "masabando",
+  "description": "React spacial",
+  "module": "./dist/react-spacial.js",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "AR"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://masabando.github.io/react-spacial",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/react-spacial.js",
+      "require": "./dist/react-spacial.js"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "version:patch": "npm --no-git-tag-version version patch",
+    "version:minor": "npm --no-git-tag-version version minor",
+    "echo-version": "echo $(node -p 'require(\"./package.json\").version')",
+    "github:push_and_tag": "git add . && git commit -m 'update version' && git push && git tag v$(npm run echo-version --silent) && git push origin v$(npm run echo-version --silent)",
+    "finish:patch": "npm run version:patch && npm run github:push_and_tag",
+    "finish:minor": "npm run version:minor && npm run github:push_and_tag",
+    "save": "git add . && git commit -m 'save' && git push",
     "lint": "next lint"
   },
-  "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.23"
-  },
   "devDependencies": {
+    "@ant-design/nextjs-registry": "^1.0.2",
+    "antd": "^5.23.1",
+    "bootstrap": "^5.3.3",
     "eslint": "^8",
-    "eslint-config-next": "14.2.23"
+    "eslint-config-next": "14.2.23",
+    "next": "^14.2.23",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.7",
+    "react-dom": "^18.3.1",
+    "sass": "^1.83.4"
   }
 }
