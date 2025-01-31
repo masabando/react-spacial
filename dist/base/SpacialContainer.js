@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { forwardRef, useEffect, useRef, useState } from "react"
 
 export default function SpacialContainer({
   shift = 1,
@@ -13,8 +13,12 @@ export default function SpacialContainer({
   useEffect(() => {
     setIsRight(ref.current.closest(".spacial-side").classList.contains("spacial-side-right"))
   }, [])
+  const Container = forwardRef(function Container({ children, ...props }, ref) {
+    return inline ? <span ref={ref} {...props}>{children}</span>
+      : <div ref={ref} {...props}>{children}</div>
+  })
   return (
-    <div
+    <Container
       ref={ref}
       className={`spacial-container ${className}`}
       style={{
@@ -25,6 +29,6 @@ export default function SpacialContainer({
       {...props}
     >
       {children}
-    </div>
+    </Container>
   )
 }

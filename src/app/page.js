@@ -41,7 +41,7 @@ export default function Home() {
 
       <div style={{
         textAlign: "center",
-        padding: "0 20%",
+        padding: "0 10%",
       }}>
         <h2>通常写真</h2>
         <div>
@@ -55,7 +55,49 @@ export default function Home() {
 
       <div style={{
         textAlign: "center",
-        padding: "0 20%",
+        padding: "0 10%",
+      }}>
+        <h2>通常写真</h2>
+        <div>
+          <RSP.SpacialImage spacial={false} rounded={10} src="./img/spacial/lab.jpg" />
+        </div>
+        <h2>空間写真</h2>
+        <div>
+          <RSP.SpacialImage rounded={10} src="./img/spacial/lab.jpg" />
+        </div>
+      </div>
+
+      <div style={{
+        textAlign: "center",
+        padding: "0 10%",
+      }}>
+        <h2>通常写真</h2>
+        <div>
+          <RSP.SpacialImage spacial={false} rounded={10} src="./img/spacial/tokyoStation.jpg" />
+        </div>
+        <h2>空間写真</h2>
+        <div>
+          <RSP.SpacialImage rounded={10} src="./img/spacial/tokyoStation.jpg" />
+        </div>
+      </div>
+
+      <div style={{
+        textAlign: "center",
+        padding: "0 10%",
+      }}>
+        <h2>通常写真</h2>
+        <div>
+          <RSP.SpacialImage spacial={false} rounded={10} src="./img/spacial/tokyoBus.jpg" />
+        </div>
+        <h2>空間写真</h2>
+        <div>
+          <RSP.SpacialImage rounded={10} src="./img/spacial/tokyoBus.jpg" />
+        </div>
+      </div>
+
+      <div style={{
+        textAlign: "center",
+        padding: "0 10%",
       }}>
         <h2>通常の重ね画像</h2>
         <BGBox>
@@ -86,7 +128,7 @@ export default function Home() {
 
       <div style={{
         textAlign: "center",
-        padding: "0 20%",
+        padding: "0 10%",
       }}>
         <h2>通常の重ね文字</h2>
         <BGBox style={{
@@ -124,8 +166,9 @@ export default function Home() {
 
       <div style={{
         textAlign: "center",
-        padding: "0 20%",
+        padding: "0 10%",
       }}>
+        <h2>複数画像</h2>
         <BGBox style={{
           fontSize: "3vw",
           fontWeight: "bold",
@@ -151,10 +194,22 @@ export default function Home() {
               </RSP.SpacialContainer>
             )
           })}
-          {/* <RSP.SpacialContainer shift={1}>
-            Spacial
-          </RSP.SpacialContainer> */}
         </BGBox>
+      </div>
+      <div style={{
+        textAlign: "center",
+        padding: "0 20%",
+      }}>
+        <h2>インライン</h2>
+        <p>
+          react-spacialは、
+          {" "}
+          <RSP.SpacialContainer inline shift={3}>
+            インライン要素
+          </RSP.SpacialContainer>
+          {" "}
+          にも対応しています。
+        </p>
       </div>
     </RSP.SpacialBody>
   );
