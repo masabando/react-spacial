@@ -43,6 +43,37 @@ export default function Home() {
         textAlign: "center",
         padding: "0 10%",
       }}>
+        <div>
+          <RSP.SpacialImages src={[
+            "./img/spacial/IMG_2396_left.jpg",
+            "./img/spacial/IMG_2396_left.jpg",
+          ]}
+            style={{
+              width: "100%",
+              borderRadius: "10px",
+            }}
+          />
+        </div>
+        <div
+          style={{
+            marginTop: "2rem",
+          }}
+        >
+          <RSP.SpacialImages src={[
+            "./img/spacial/IMG_2396_right.jpg",
+            "./img/spacial/IMG_2396_left.jpg",
+          ]}
+            style={{
+              width: "100%",
+              borderRadius: "10px",
+            }}
+          />
+        </div>
+      </div>
+      <div style={{
+        textAlign: "center",
+        padding: "0 10%",
+      }}>
         <h2>通常写真</h2>
         <div>
           <RSP.SpacialImage spacial={false} rounded={10} src="./img/spacial/kutc.jpg" />
